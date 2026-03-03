@@ -25,16 +25,22 @@ if (precoCompra >= precoVenda)
     Console.WriteLine($"novo preço venda: {precoVenda} | novo preço compra: {precoCompra}");
 }
 
-// carrega config
-var cfgTxt = await File.ReadAllTextAsync("config.json");
-var cfg = JsonSerializer.Deserialize<AppConfig>(cfgTxt, new JsonSerializerOptions
 
-{
-    PropertyNameCaseInsensitive = true
-})!;
 if (!File.Exists("config.json"))
 {
-    Console.WriteLine("arquivo config.json não encontrado.");
+    Console.WriteLine("arquivo config.json nao encontrado.");
+    return; 
+}
+
+var cfgTxt = await File.ReadAllTextAsync("config.json");
+var cfg = JsonSerializer.Deserialize<AppConfig>(cfgTxt, new JsonSerializerOptions 
+{
+    PropertyNameCaseInsensitive = true
+}); 
+
+if (cfg == null)
+{
+    Console.WriteLine("falha ao carregar config.json"); 
     return;
 }
 var cotSrv = new CotacaoSrv();
@@ -77,6 +83,9 @@ while (true)
         avisouCompra = true;
         avisouVenda = false;
     }
+    
+    Console.WriteLine($"status -> venda:{avisouVenda} compra:{avisouCompra}");
 
-    await Task.Delay(cfg.IntervaloSegundos * 1000);
+    var delayMs = Math.Max(1, cfg.IntervaloSegundos) * 1000;
+    await Task.Delay(delayMs);
 }
