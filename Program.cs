@@ -13,15 +13,30 @@ var ativo = args[0];
 var precoVenda = decimal.Parse(args[1], CultureInfo.InvariantCulture);
 var precoCompra = decimal.Parse(args[2], CultureInfo.InvariantCulture);
 
-Console.WriteLine($"Monitorando {ativo}...");
+Console.WriteLine($"monitorando {ativo}...");
+
+// preco de compra deve ser menor que preco de venda
+if (precoCompra >= precoVenda)
+{
+    Console.WriteLine("aviso: preço de compra >= preço de venda");
+    var tmp = precoVenda;
+    precoVenda = precoCompra;
+    precoCompra = tmp;
+    Console.WriteLine($"novo preço venda: {precoVenda} | novo preço compra: {precoCompra}");
+}
 
 // carrega config
 var cfgTxt = await File.ReadAllTextAsync("config.json");
 var cfg = JsonSerializer.Deserialize<AppConfig>(cfgTxt, new JsonSerializerOptions
+
 {
     PropertyNameCaseInsensitive = true
 })!;
-
+if (!File.Exists("config.json"))
+{
+    Console.WriteLine("arquivo config.json não encontrado.");
+    return;
+}
 var cotSrv = new CotacaoSrv();
 var emailSrv = new EmailSrv(cfg);
 
@@ -52,8 +67,8 @@ while (true)
         avisouCompra = false;
     }
 
-    // compra
-    if (precoAtual <= precoCompra && !avisouCompra)
+    // compra 
+    else if (precoAtual <= precoCompra && !avisouCompra)
     {
         await emailSrv.EnviarAsync(
             $"Alerta de COMPRA - {ativo}",

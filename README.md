@@ -1,16 +1,16 @@
 # StockQuoteAlert
 
-Console simples para monitorar preço de ativo (B3) via `brapi.dev` e mandar alerta por email quando bater nos gatilhos de compra/venda.
+Console simples para monitorar preço de ativo via `brapi.dev` e mandar alerta por email quando bater nos gatilhos de compra ou venda.
 
 ## Estrutura
 
-- `Program.cs`
-- `serv/`
-  - `CotacaoSrv.cs`
-  - `EmailSrv.cs`
-- `model/`
-  - `AppConfig.cs`
-- `config.json`
+`Program.cs`
+  `serv/`
+    `CotacaoSrv.cs`
+    `EmailSrv.cs`
+  `model`
+    `AppConfig.cs`
+  `config.json`
 
 ## Configuração (config.json)
 
@@ -29,9 +29,9 @@ Edite `config.json` na raiz do projeto:
 }
 ```
 
-Observação: no Gmail, use **senha de app** (não a senha normal).
+OBS!: no Gmail, use **senha de app** (não a senha normal).
 
-## Como executar
+## Como executar:
 
 Exemplo:
 
