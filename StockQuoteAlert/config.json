@@ -1,0 +1,10 @@
+{
+  "emailDestino": "seuemail@gmail.com",
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "porta": 587,
+    "usuario": "seuemail@gmail.com",
+    "senha": "SUA_SENHA_APP"
+  },
+  "intervaloSegundos": 30
+}

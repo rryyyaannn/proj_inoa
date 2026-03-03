@@ -1,0 +1,4 @@
+C:\Projetos\Proj_Inoa\StockQuoteAlert\obj\Debug\net8.0\StockQuoteAlert.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\Proj_Inoa\StockQuoteAlert\obj\Debug\net8.0\StockQuoteAlert.AssemblyInfoInputs.cache
+C:\Projetos\Proj_Inoa\StockQuoteAlert\obj\Debug\net8.0\StockQuoteAlert.AssemblyInfo.cs
+C:\Projetos\Proj_Inoa\StockQuoteAlert\obj\Debug\net8.0\StockQuoteAlert.csproj.CoreCompileInputs.cache
